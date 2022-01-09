@@ -5,6 +5,7 @@ Based on this article series on building a REST API with express https://www.top
 but adapted to use Postgresql
 
 npm start 
+
 npm run test 
 
 Change the typeorm.json and ./connection.createTestConnection.ts configs to your own
