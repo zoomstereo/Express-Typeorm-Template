@@ -6,3 +6,5 @@ but adapted to use Postgresql
 
 npm start 
 npm run test 
+
+Change the typeorm.json and ./connection.createTestConnection.ts configs to your own
