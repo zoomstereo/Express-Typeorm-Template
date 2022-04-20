@@ -32,7 +32,7 @@ describe('users and auth endpoints', async function () {
     let request: supertest.SuperAgentTest;
 
     before(async function () {
-        await connection.createTestConnection();
+        await connection.create(true);
         request = supertest.agent(server.setUpServer());
     });
 

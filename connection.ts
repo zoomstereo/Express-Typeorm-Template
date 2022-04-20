@@ -1,23 +1,20 @@
 import { createConnection, getConnection } from "typeorm";
 
 const connection = {
-    async create() {
-        await createConnection();
-        console.log("Connected to the db");
-    },
+    async create(testConnection: boolean) {
+        let entitiesPath = testConnection ? "entity/**/*.entity.ts" : "dist/**/*.entity.js"
 
-    async createTestConnection() {
         await createConnection({
             type: "postgres",
-            host: "localhost",
-            port: 5433,
-            username: "",
-            password: "",
-            database: "",
+            host: process.env.DB_HOST,
+            port: parseInt(process.env.DB_PORT || "5433"),
+            username: process.env.DB_USERNAME,
+            password: process.env.PASSWORD,
+            database: process.env.DATABASE_NAME,
             synchronize: true,
             logging: false,
             entities: [
-                "entity/**/*.entity.ts"
+                entitiesPath
             ],
             migrations: [
                 "migration/*.ts"
@@ -26,7 +23,6 @@ const connection = {
                 "subscriber/*.ts"
             ]
         });
-        console.log("Connected to the TEST db");
     },
 
     async close() {
